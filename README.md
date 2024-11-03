@@ -15,7 +15,7 @@ use of:
 - `ab_testing.ipynb`: Jupyter notebook with the analysis
 - `ab_data.csv`: data from [Kaggle](https://www.kaggle.com/datasets/zhangluyuan/ab-testing) used in the analysis
 - `README.md`: this file
-- `ab_script.py`: Python script with the analysis
+- `ab_script.py`: Python script with the hypothesis testing
 
 #### Results
 
