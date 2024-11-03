@@ -19,4 +19,6 @@ use of:
 
 #### Results
 
+I used a z-test to compare the conversion rates of the old and new landing pages.
+
 The analysis shows that the new landing page does not convert users better than the old landing page. The p-value is 0.1596, which is higher than the significance level of 0.05. Therefore, we fail to reject the null hypothesis.
