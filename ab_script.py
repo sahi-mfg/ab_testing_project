@@ -69,7 +69,7 @@ def split_data(data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return treatment, control
 
 
-def compute_conversion_rate(data: pd.DataFrame) -> tuple[float, float]:
+def compute_conversion_rate(data: pd.DataFrame) -> float:
     """
     Compute the conversion rate of the DataFrame.
 
@@ -115,18 +115,18 @@ def compute_z_statistic(treatment: pd.DataFrame, control: pd.DataFrame) -> tuple
 
     # z-statistic
     observed_z_score: float = diff_rate / pool_stdev
-    critical_z_score: float = stats.norm.ppf(0.975)
+    critical_z_score: float = stats.norm.ppf(0.975).item()
 
     return observed_z_score, critical_z_score
 
 
-if __name__ == "__main__":
+def main() -> None:
     df: pd.DataFrame = pd.read_csv("ab_data.csv")
     cleaned_data: pd.DataFrame = drop_incoherent_data(df)
 
     treatment, control = split_data(cleaned_data)
     observed_z_score, critical_z_score = compute_z_statistic(treatment, control)
-    p_value: float = 2 * (1 - stats.norm.cdf(observed_z_score))
+    p_value: float = 2 * (1 - stats.norm.cdf(observed_z_score).item())
 
     print(f"Z-score: {observed_z_score:.2f}")
     print(f"Critical Z-score: {critical_z_score:.2f}")
@@ -135,3 +135,7 @@ if __name__ == "__main__":
         print(f"Reject the null hypothesis, p-value: {p_value:.2f}")
     else:
         print(f"Fail to reject the null hypothesis, p-value: {p_value:.2f}")
+
+
+if __name__ == "__main__":
+    main()
